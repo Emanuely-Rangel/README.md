@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quiz interativo sobre músicas e cantores">
+  <title>Quiz Musical</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+  <header class="cabecalho">
+    <h1>Quiz Musical</h1>
+    <p>Teste seus conhecimentos sobre músicas e cantores.</p>
+  </header>
+
+  <main class="conteudo">
+    <section class="quiz" aria-labelledby="titulo-pergunta">
+      <div class="progresso">
+        <p id="contador-perguntas">Pergunta 1 de 5</p>
+        <p id="placar-atual">Pontos: 0</p>
+      </div>
+
+      <div class="barra-progresso" aria-label="Progresso do quiz">
+        <div id="preenchimento-progresso"></div>
+      </div>
+
+      <article id="cartao-pergunta">
+        <h2 id="titulo-pergunta">Carregando pergunta...</h2>
+
+        <div id="opcoes" class="opcoes" role="radiogroup"></div>
+
+        <p id="mensagem" class="mensagem" aria-live="polite"></p>
+      </article>
+
+      <nav class="navegacao" aria-label="Navegação do quiz">
+        <button id="botao-anterior" type="button">Anterior</button>
+        <button id="botao-proximo" type="button" disabled>Próxima</button>
+      </nav>
+    </section>
+
+    <section id="resultado" class="resultado escondido" aria-live="polite">
+      <h2>Quiz finalizado!</h2>
+      <p id="pontuacao-final"></p>
+      <p id="mensagem-final"></p>
+      <button id="botao-reiniciar" type="button">Reiniciar quiz</button>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Desenvolvido para fins de estudo com HTML5, CSS3 e JavaScript.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
