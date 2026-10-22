@@ -24,6 +24,57 @@ const perguntas = [
     opcoes: ["Raul Seixas", "Cazuza", "Renato Russo", "Chico Buarque"],
     respostaCorreta: 0
   }
+
+  {
+    pergunta: "Qual cantora brasileira lançou a música 'Anunciação'?",
+    opcoes: ["Marisa Monte", "Elba Ramalho", "Cássia Eller", "Gal Costa"],
+    respostaCorreta: 1
+  },
+  {
+    pergunta: "Qual grupo musical lançou a canção 'Bohemian Rhapsody'?",
+    opcoes: ["The Beatles", "Queen", "Nirvana", "Coldplay"],
+    respostaCorreta: 1
+  },
+  {
+    pergunta: "Quem interpreta a música 'Evidências' em sua versão mais conhecida?",
+    opcoes: ["Zezé Di Camargo e Luciano", "Chitãozinho e Xororó", "Jorge e Mateus", "Henrique e Juliano"],
+    respostaCorreta: 1
+  },
+  {
+    pergunta: "Qual cantora é conhecida pelo álbum '1989'?",
+    opcoes: ["Taylor Swift", "Billie Eilish", "Ariana Grande", "Dua Lipa"],
+    respostaCorreta: 0
+  },
+  {
+    pergunta: "Qual artista é conhecido como 'Rei do Pop'?",
+    opcoes: ["Freddie Mercury", "Michael Jackson", "Elvis Presley", "Prince"],
+    respostaCorreta: 1
+  },
+  {
+    pergunta: "Qual banda brasileira gravou a música 'Pro Dia Nascer Feliz'?",
+    opcoes: ["Barão Vermelho", "Legião Urbana", "Paralamas do Sucesso", "Engenheiros do Hawaii"],
+    respostaCorreta: 0
+  },
+  {
+    pergunta: "Qual cantora lançou a música 'Bad Romance'?",
+    opcoes: ["Lady Gaga", "Katy Perry", "Beyoncé", "Shakira"],
+    respostaCorreta: 0
+  },
+  {
+    pergunta: "Quem canta a música 'Garota de Ipanema' em uma das gravações internacionais mais famosas?",
+    opcoes: ["Elis Regina", "Astrud Gilberto", "Ivete Sangalo", "Maria Bethânia"],
+    respostaCorreta: 1
+  },
+  {
+    pergunta: "Qual cantor brasileiro é conhecido por sucessos como 'Detalhes' e 'Como É Grande o Meu Amor por Você'?",
+    opcoes: ["Caetano Veloso", "Roberto Carlos", "Djavan", "Milton Nascimento"],
+    respostaCorreta: 1
+  },
+  {
+    pergunta: "Qual banda lançou a música 'Smells Like Teen Spirit'?",
+    opcoes: ["Green Day", "Nirvana", "Linkin Park", "Imagine Dragons"],
+    respostaCorreta: 1
+  }
 ];
 
 let perguntaAtual = 0;
