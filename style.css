@@ -1,10 +1,10 @@
 :root {
-  --cor-principal: #6c2bd9;
-  --cor-secundaria: #f4efff;
-  --cor-texto: #25202d;
-  --cor-certa: #1f9d55;
-  --cor-errada: #d93636;
-  --cor-fundo: #f7f7fb;
+  --cor-principal: #e91e63;  /* Rosa */
+  --cor-secundaria: #fff0f6;
+  --cor-texto: #2b1b23;
+  --cor-certa: #16a34a;
+  --cor-errada: #dc2626;
+  --cor-fundo: #fff7fa;
 }
 
 * {
@@ -44,10 +44,11 @@ body {
 
 .quiz,
 .resultado {
-  background: #ffffff;
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(108, 43, 217, 0.15);
+  border-radius: 22px;
   padding: 2rem;
-  box-shadow: 0 8px 25px rgba(48, 31, 75, 0.14);
+  box-shadow: 0 12px 35px rgba(48, 31, 75, 0.18);
 }
 
 .progresso {
@@ -74,6 +75,9 @@ body {
 }
 
 #titulo-pergunta {
+  margin-bottom: 1.5rem;
+  color: #43207c;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
   line-height: 1.4;
 }
 
@@ -85,37 +89,49 @@ body {
 
 .opcao {
   width: 100%;
-  padding: 1rem;
-  border: 2px solid #d8d1e5;
-  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  border: 2px solid #ddd6fe;
+  border-radius: 14px;
   background: #ffffff;
-  color: var(--cor-texto);
+  color: #29233a;
   text-align: left;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+  box-shadow: 0 4px 10px rgba(88, 55, 140, 0.08);
+  transition: transform 0.2s ease, 
+              background 0.2s ease, 
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
 }
 
 .opcao:hover:not(:disabled) {
-  transform: translateY(-2px);
-  border-color: var(--cor-principal);
-  background: var(--cor-secundaria);
+  transform: translateY(6px);
+  border-color: #6c2bd9;
+  background:  #f3edff;
+  box-shadow: 0 6px 15px rgba(108, 43, 217, 0.2);
+}
+
+.opcao:focus-visible {
+  outline: 3px solid #f4b400;
+  outline-offset: 3px;
 }
 
 .opcao:disabled {
   cursor: not-allowed;
+  opacity: 0.9;
 }
 
 .opcao.correta {
-  color: #ffffff;
-  background: var(--cor-certa);
-  border-color: var(--cor-certa);
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #166534;
 }
 
 .opcao.incorreta {
-  color: #ffffff;
-  background: var(--cor-errada);
-  border-color: var(--cor-errada);
+  background: #dcfce7;
+  border-color: #16a34a;
+  color: #166534;
 }
 
 .mensagem {
