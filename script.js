@@ -23,8 +23,7 @@ const perguntas = [
     pergunta: "Qual artista brasileiro ficou conhecido como o 'Rei do Rock Brasileiro'?",
     opcoes: ["Raul Seixas", "Cazuza", "Renato Russo", "Chico Buarque"],
     respostaCorreta: 0
-  }
-
+  }, // <--- VÍRGULA ADICIONADA AQUI
   {
     pergunta: "Qual cantora brasileira lançou a música 'Anunciação'?",
     opcoes: ["Marisa Monte", "Elba Ramalho", "Cássia Eller", "Gal Costa"],
@@ -78,7 +77,6 @@ const perguntas = [
 ];
 
 let perguntaAtual = 0;
-let pontuacao = 0;
 let respostasUsuario = new Array(perguntas.length).fill(null);
 
 const contadorPerguntas = document.querySelector("#contador-perguntas");
@@ -95,17 +93,21 @@ const pontuacaoFinal = document.querySelector("#pontuacao-final");
 const mensagemFinal = document.querySelector("#mensagem-final");
 const botaoReiniciar = document.querySelector("#botao-reiniciar");
 
+// Função utilitária para calcular pontuação com base nos acertos salvos
+function calcularPontuacao() {
+  return respostasUsuario.reduce((total, resposta, idx) => {
+    return resposta === perguntas[idx].respostaCorreta ? total + 1 : total;
+  }, 0);
+}
+
 function mostrarPergunta() {
   const pergunta = perguntas[perguntaAtual];
   const respostaSalva = respostasUsuario[perguntaAtual];
+  const pontuacao = calcularPontuacao();
 
-  contadorPerguntas.textContent =
-    `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
-
+  contadorPerguntas.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
   placarAtual.textContent = `Pontos: ${pontuacao}`;
-
-  preenchimentoProgresso.style.width =
-    `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
+  preenchimentoProgresso.style.width = `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
 
   tituloPergunta.textContent = pergunta.pergunta;
   opcoes.innerHTML = "";
@@ -119,7 +121,7 @@ function mostrarPergunta() {
     botaoOpcao.classList.add("opcao");
     botaoOpcao.textContent = opcao;
     botaoOpcao.setAttribute("role", "radio");
-    botaoOpcao.setAttribute("aria-checked", "false");
+    botaoOpcao.setAttribute("aria-checked", respostaSalva === indice ? "true" : "false");
 
     if (respostaSalva !== null) {
       botaoOpcao.disabled = true;
@@ -136,8 +138,7 @@ function mostrarPergunta() {
         mensagem.textContent = "Resposta correta!";
         mensagem.classList.add("correta");
       } else {
-        mensagem.textContent =
-          `Resposta incorreta. A correta é: ${pergunta.opcoes[pergunta.respostaCorreta]}.`;
+        mensagem.textContent = `Resposta incorreta. A correta é: ${pergunta.opcoes[pergunta.respostaCorreta]}.`;
         mensagem.classList.add("incorreta");
       }
     } else {
@@ -149,41 +150,12 @@ function mostrarPergunta() {
 
   botaoAnterior.disabled = perguntaAtual === 0;
   botaoProximo.disabled = respostasUsuario[perguntaAtual] === null;
-
-  botaoProximo.textContent =
-    perguntaAtual === perguntas.length - 1 ? "Finalizar" : "Próxima";
+  botaoProximo.textContent = perguntaAtual === perguntas.length - 1 ? "Finalizar" : "Próxima";
 }
 
 function validarResposta(indiceSelecionado) {
-  const pergunta = perguntas[perguntaAtual];
-  const botoes = document.querySelectorAll(".opcao");
-
   respostasUsuario[perguntaAtual] = indiceSelecionado;
-
-  botoes.forEach((botao, indice) => {
-    botao.disabled = true;
-
-    if (indice === pergunta.respostaCorreta) {
-      botao.classList.add("correta");
-    }
-
-    if (indice === indiceSelecionado && indice !== pergunta.respostaCorreta) {
-      botao.classList.add("incorreta");
-    }
-  });
-
-  if (indiceSelecionado === pergunta.respostaCorreta) {
-    pontuacao++;
-    mensagem.textContent = "Resposta correta!";
-    mensagem.className = "mensagem correta";
-  } else {
-    mensagem.textContent =
-      `Resposta incorreta. A correta é: ${pergunta.opcoes[pergunta.respostaCorreta]}.`;
-    mensagem.className = "mensagem incorreta";
-  }
-
-  placarAtual.textContent = `Pontos: ${pontuacao}`;
-  botaoProximo.disabled = false;
+  mostrarPergunta(); // Recarrega a pergunta atual com os estados salvos e pontuação atualizada
 }
 
 function avancarPergunta() {
@@ -203,11 +175,11 @@ function voltarPergunta() {
 }
 
 function mostrarResultado() {
+  const pontuacao = calcularPontuacao();
   quiz.classList.add("escondido");
   resultado.classList.remove("escondido");
 
-  pontuacaoFinal.textContent =
-    `Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
+  pontuacaoFinal.textContent = `Você acertou ${pontuacao} de ${perguntas.length} perguntas.`;
 
   const percentual = (pontuacao / perguntas.length) * 100;
 
@@ -222,7 +194,6 @@ function mostrarResultado() {
 
 function reiniciarQuiz() {
   perguntaAtual = 0;
-  pontuacao = 0;
   respostasUsuario = new Array(perguntas.length).fill(null);
 
   resultado.classList.add("escondido");
